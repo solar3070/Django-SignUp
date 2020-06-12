@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'css/read.css' %}" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="accounts">
+        <a href="{% url 'signup' %}">회원가입</a>
+        <a href="{% url 'login' %}">로그인</a>
+        <a href="{% url 'logout' %}">로그아웃</a>
+    </div>
+    <a href="{% url 'create' %}"><p id="write">+</p></a>
+
+    <div class="box">
+        {% for blog in posts %}
+        <div class="post">
+            <a href="{% url 'detail' blog.id %}"><h4>{{blog.title}}</h4></a>
+            <p>{{blog.pub_date}}</p>
+            <a href="{% url 'update' blog.id %}">수정</a>
+            <a href="{% url 'delete' blog.id %}">삭제</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {%if posts.has_previous%}
+        <a href="?page=1">First</a>
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+        {%endif%}
+
+        <span>{{posts.number}}</span>
+        <span>of</span>
+        <span>{{posts.paginator.num_pages}}</span>
+
+        {%if posts.has_next%}
+        <a href="?page={{posts.next_page_number}}"> Next</a>
+        <a href="?page={{posts.paginator.num_pages}}"> Last</a>
+        {%endif%}
+    </div>     
+</body>
+
+</html>

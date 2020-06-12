@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'css/accounts.css' %}" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="account">
+            <br><br><br><br>
+            <P>Username</P>
+            <input name="username" type="text" value="">
+            <br>
+            <p>Password</p>
+            <input name="password" type="password" value="">
+        </div>
+        <input class="btn" type="submit" value="Login">
+    </form>
+</body>
+
+</html>

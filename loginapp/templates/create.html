@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'css/create.css' %}" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="write">=
+            <br><br>
+            <div class="filebox">
+                <label for="id_image">사진 업로드</label>
+                {{form.image}}
+            </div>
+            <br>
+            <p>제목</p>
+            {{form.title}}
+            <br>
+            <p>본문</p>
+            {{form.body}}
+        </div>
+        <input class="btn" type="submit" value="제출">
+    </form>
+</body>
+
+</html>
